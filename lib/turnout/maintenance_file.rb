@@ -64,7 +64,7 @@ module Turnout
       import YAML::load(File.open(path)) || {}
     end
 
-    def named_paths
+    def self.named_paths
       Turnout.config.named_maintenance_file_paths
     end
   end

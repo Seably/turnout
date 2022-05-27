@@ -14,7 +14,7 @@ class Rack::Turnout
 
   def call(env)
     request = Turnout::Request.new(env)
-    settings = Turnout::MaintenanceFile.find
+    settings = Turnout::Settings.find
 
     if settings && !request.allowed?(settings)
       page_class = Turnout::MaintenancePage.best_for(env)

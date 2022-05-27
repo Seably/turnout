@@ -5,7 +5,7 @@ namespace :maintenance do
   rule /\Amaintenance:(.*:|)start\Z/ do |task|
     invoke_environment
 
-    maint_settings = Turnout::Settings.storage_class.new
+    maint_settings = Turnout::Settings.storage
     maint_settings.import_env_vars(ENV)
     maint_settings.write
 
@@ -17,9 +17,9 @@ namespace :maintenance do
   rule /\Amaintenance:(.*:|)end\Z/ do |task|
     invoke_environment
 
-    maint_file = maintenance_file_for(task)
+    maint_settings = Turnout::Settings.storage
 
-    if maint_file.delete
+    if maint_settings.delete
       puts "Stopped maintenance mode"
     else
       fail 'Could not find a maintenance file to delete'

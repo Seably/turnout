@@ -16,7 +16,7 @@ class Rack::Turnout
     request = Turnout::Request.new(env)
     settings = Turnout::Settings.storage
 
-    if settings && !request.allowed?(settings)
+    if settings&.exists? && !request.allowed?(settings)
       page_class = Turnout::MaintenancePage.best_for(env)
       page = page_class.new(settings.reason, env: env)
 

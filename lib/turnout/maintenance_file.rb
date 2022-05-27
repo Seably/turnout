@@ -5,8 +5,8 @@ module Turnout
   class MaintenanceFile < SettingsStore
     attr_reader :path
 
-    def initialize(path)
-      @path = path || self.class.find
+    def initialize
+      @path = self.class.find
       super()
       import_yaml if exists?
     end

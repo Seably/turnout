@@ -10,7 +10,7 @@ module Turnout
       end
 
       def exists?
-        ENV[Turnout.config.env_key].present?
+        ENV.has_key?(Turnout.config.env_key)
       end
 
       # Do nothing

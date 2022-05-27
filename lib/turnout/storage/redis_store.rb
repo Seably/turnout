@@ -1,5 +1,4 @@
 require 'yaml'
-require 'fileutils'
 
 module Turnout
   module Storage

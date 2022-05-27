@@ -7,7 +7,7 @@ module Turnout
 
     def initialize(path)
       @path = path
-      super
+      super()
       import_yaml if exists?
     end
 

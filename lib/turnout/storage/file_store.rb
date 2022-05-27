@@ -3,7 +3,7 @@ require 'fileutils'
 
 module Turnout
   module Storage
-    class File < SettingsStore
+    class FileStore < SettingsStore
       attr_reader :path
 
       def initialize

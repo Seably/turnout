@@ -3,12 +3,12 @@ require 'fileutils'
 
 module Turnout
   module Storage
-    class Redis < SettingsStore
+    class RedisStore < SettingsStore
       REDIS_KEY = ENV["TURNOUT_REDIS_KEY"] || "TURNOUT_MAINTENANCE".freeze
       attr_accessor :redis
 
       def initialize
-        @redis = Redis.new(url: ENV["REDIS_URL"])
+        @redis = ::Redis.new(url: ENV["REDIS_URL"])
         super
         import_yaml if exists?
       end

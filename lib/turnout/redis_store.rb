@@ -13,7 +13,7 @@ module Turnout
     end
 
     def exists?
-      redis.exists(REDIS_KEY)
+      redis.exists(REDIS_KEY).positive?
     end
 
     def write

@@ -5,7 +5,7 @@ module Turnout
     require 'turnout/maintenance_file'
 
     def self.find
-      case Turnout.config.session_store
+      case Turnout.config.settings_store
       when :redis
         RedisStore.find
       else

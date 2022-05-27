@@ -1,13 +1,15 @@
-require 'yaml'
-
 module Turnout
   class Settings
+    require 'turnout/settings_store'
+    require 'turnout/redis_store'
+    require 'turnout/maintenance_file'
+
     def self.find
       case Turnout.config.session_store
       when :redis
-        Turnout::RedisStore.find
+        RedisStore.find
       else
-        Turnout::MaintenanceFile.find
+        MaintenanceFile.find
       end
     end
   end

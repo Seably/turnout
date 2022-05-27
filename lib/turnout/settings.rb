@@ -4,17 +4,13 @@ module Turnout
     require 'turnout/redis_store'
     require 'turnout/maintenance_file'
 
-    def self.storage_class
+    def self.storage
       case Turnout.config.settings_store
       when :redis
-        RedisStore
+        RedisStore.new
       else
-        MaintenanceFile
+        MaintenanceFile.new
       end
-    end
-
-    def self.find
-      storage_class.find
     end
   end
 end

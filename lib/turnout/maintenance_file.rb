@@ -6,7 +6,7 @@ module Turnout
     attr_reader :path
 
     def initialize(path)
-      @path = path
+      @path = path || self.class.find
       super()
       import_yaml if exists?
     end
@@ -62,6 +62,10 @@ module Turnout
 
     def import_yaml
       import YAML::load(File.open(path)) || {}
+    end
+
+    def named_paths
+      Turnout.config.named_maintenance_file_paths
     end
   end
 end

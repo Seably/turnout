@@ -91,9 +91,5 @@ module Turnout
     def import_yaml
       raise "Needs implementation"
     end
-
-    def self.named_paths
-      Turnout.config.named_maintenance_file_paths
-    end
   end
 end

@@ -46,15 +46,6 @@ module Turnout
     end
     alias :import_env_vars :import
 
-    # Find the first MaintenanceFile that exists
-    def self.find
-      raise "Needs implementation"
-    end
-
-    def self.named(name)
-      raise "Needs implementation"
-    end
-
     private
 
     def retry_after=(value)

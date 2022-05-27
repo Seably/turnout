@@ -6,7 +6,7 @@ module Turnout
     attr_reader :path
 
     def initialize
-      @path = self.class.find
+      @path = self.class.default_path
       super()
       import_yaml if exists?
     end
@@ -39,19 +39,8 @@ module Turnout
       File.delete(path) if exists?
     end
 
-    # Find the first MaintenanceFile that exists
-    def self.find
-      path = named_paths.values.find { |p| File.exist? p }
-      self.new(path) if path
-    end
-
-    def self.named(name)
-      path = named_paths[name.to_sym]
-      self.new(path) unless path.nil?
-    end
-
-    def self.default
-      self.new(named_paths.values.first)
+    def self.default_path
+      named_paths.values.first
     end
 
     private

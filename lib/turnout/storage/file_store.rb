@@ -7,8 +7,8 @@ module Turnout
       attr_reader :path
 
       def initialize
-        @path = self.class.default_path
         super()
+        @path = negotiate_path
         import_yaml if exists?
       end
 
@@ -45,6 +45,15 @@ module Turnout
       end
 
       private
+
+      def negotiate_path
+        return self.class.default_path unless task
+
+        path_name = (task.name.split(':') - ['maintenance', 'start', 'end']).join(':')
+        return self.class.default_path if path_name == ''
+
+        self.class.named_paths[path_name.to_sym]
+      end
 
       def dir_path
         File.dirname(path)

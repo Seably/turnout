@@ -5,8 +5,10 @@ namespace :maintenance do
   rule /\Amaintenance:(.*:|)start\Z/ do |task|
     invoke_environment
 
+    env = ENV.to_h.merge(task: task)
+
     maint_settings = Turnout::Settings.storage
-    maint_settings.import_env_vars(ENV)
+    maint_settings.import_env_vars(env)
     maint_settings.write
 
     puts "Started maintenance mode"

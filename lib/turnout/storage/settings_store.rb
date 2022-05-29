@@ -3,7 +3,7 @@ require 'yaml'
 module Turnout
   module Storage
     class SettingsStore
-      SETTINGS = [:reason, :allowed_paths, :allowed_ips, :response_code, :retry_after]
+      SETTINGS = [:reason, :allowed_paths, :allowed_ips, :response_code, :retry_after, :task]
       attr_reader(*SETTINGS)
 
       def initialize

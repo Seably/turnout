@@ -5,6 +5,9 @@ module Turnout
       :app_root,
       :named_maintenance_file_paths,
       :maintenance_pages_path,
+      :settings_store,
+      :redis_key,
+      :env_key,
       :default_maintenance_page,
       :default_reason,
       :default_allowed_ips,
@@ -23,6 +26,9 @@ module Turnout
       @skip_middleware = false
       @app_root = '.'
       @named_maintenance_file_paths = {default: app_root.join('tmp', 'maintenance.yml').to_s}
+      @settings_store = :file
+      @redis_key = "TURNOUT_MAINTENANCE"
+      @env_key = "TURNOUT_MAINTENANCE"
       @maintenance_pages_path = app_root.join('public').to_s
       @default_maintenance_page = Turnout::MaintenancePage::HTML
       @default_reason = "The site is temporarily down for maintenance.\nPlease check back soon."

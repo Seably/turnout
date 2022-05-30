@@ -29,6 +29,14 @@ module Turnout
         Pathname.new(Turnout.config.maintenance_pages_path).join(filename)
       end
 
+      def path
+        if File.exist? custom_path
+          custom_path
+        else
+          default_path
+        end
+      end
+
       protected
 
       def self.inherited(subclass)
@@ -56,14 +64,6 @@ module Turnout
 
       def file_content
         File.read(path)
-      end
-
-      def path
-        if File.exist? custom_path
-          custom_path
-        else
-          default_path
-        end
       end
 
       def default_path

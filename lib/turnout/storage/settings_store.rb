@@ -39,6 +39,9 @@ module Turnout
       end
 
       def import(hash)
+        # NOTE: This `hash` argument is received as `true` instead of a Hash object, hence following code is added as a hotfix
+        hash = {} unless hash.is_a?(Hash)
+
         SETTINGS.map(&:to_s).each do |att|
           self.send(:"#{att}=", hash[att]) unless hash[att].nil?
         end
